@@ -1,0 +1,13 @@
+/* 
+Normally would be SCSS/SASS/LESS, but I don't have time to get the build cycle right
+*/
+
+.progress-bar {
+    width: 100%;
+    display: flex;
+
+}
+
+.progress-bar .progress-bar-node {
+    flex-grow: 1;
+}
