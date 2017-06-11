@@ -7,7 +7,8 @@
     "copy": "rm -rf dist && mkdir dist && cp src/app/index.html dist/index.html",
     "build": "npm run copy && cross-env NODE_ENV='production' webpack",
     "build-dev": "npm run copy && webpack --watch --colors --progress",
-    "serve": "http-server ./dist"
+    "serve-local": "http-server ./dist",
+    "serve-prod": "node server.js"
   },
   "repository": {
     "type": "git",

@@ -5,7 +5,14 @@ class Manager {
         // Generally, here is where you would obfuscate what urls you use.
         // This way, your methods describe their intention.
         // Here, you're again able to add some logic before the request gets back to the view layer.
-        return API.GET();
+        return API.GET('/surveys');
+    }
+
+    getSurveyById(id) {
+        // Generally, here is where you would obfuscate what urls you use.
+        // This way, your methods describe their intention.
+        // Here, you're again able to add some logic before the request gets back to the view layer.
+        return API.GET(`/surveys/${id}`);
     }
 }
 

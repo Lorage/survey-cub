@@ -1,6 +1,7 @@
 // API Helper methods
 import 'whatwg-fetch';
 
+// Data that comes back from API
 const questionData = [
     {
         id: 1,
@@ -32,14 +33,17 @@ const questionData = [
         options: [
             {
                 id: 1,
+                type: "text",
                 content: "Very good!"
             },
             {
                 id: 2,
+                type: "text",
                 content: "Mind blowing."
             },
             {
                 id: 3,
+                type: "text",
                 content: "Meh."
             }
         ],
@@ -51,7 +55,7 @@ const questionData = [
         type: "free-response",
         options: [],
         correctOptionIds: []
-    },
+    }
 ];
 
 // A class dedicated to container HTTP logic
@@ -59,14 +63,22 @@ const questionData = [
 class API {
     GET(path) {
         // Normally would use fetch(path) api, but instead return hard coded JSON response
-        return {
-            body: [
+
+        if (path === '/surveys') {
+            return [
                 {
-                    name: "Hiring 101", 
+                    id: 1,
+                    name: "Hiring 101",
                     questions: questionData
                 }
-            ]
-        };
+            ];
+        } else if (path === '/surveys/1') {
+            return {
+                id: 1,
+                name: "Hiring 101",
+                questions: questionData
+            };
+        }
     }
 
     POST() {

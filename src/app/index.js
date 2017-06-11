@@ -3,12 +3,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {
   BrowserRouter,
-  Route
+  Route,
+  Switch
 } from 'react-router-dom';
 
 // Component/View imports
-import Intro from './views/intro/intro.js';
-import Question from './views/question/question.js';
+import SurveyList from './views/surveyList/surveyList.js';
+import Survey from './views/Survey/survey.js';
+import Question from './views/Survey/question.js';
 import Results from './views/results/results.js';
 
 // CSS
@@ -18,27 +20,12 @@ import '../assets/style/main.css';
 class Root extends React.Component {
 
     render() {
-        const routes = [
-            { 
-                path: '/',
-                component: Intro,
-            },
-            { 
-                path: '/question/:questionid',
-                component: Question,
-            },
-            { 
-                path: '/results/:resultid',
-                component: Results,
-            },
-        ];
-
         return (
             <BrowserRouter>
                 <div>
-                    {routes.map((route, i) => (
-                        <Route exact path={route.path} component={route.component}/>
-                    ))}
+                    <Route exact path="/" component={SurveyList} />
+                    <Route path="/survey/:id" component={Survey} />
+                    <Route exact path="/results" component={Results} />
                 </div>
             </BrowserRouter>
         );
@@ -46,3 +33,6 @@ class Root extends React.Component {
 }
 
 ReactDOM.render(<Root />, document.getElementById('root'));
+
+// SurveyList -> Click on Survey
+// 
