@@ -1,19 +1,28 @@
 import React from 'react';
 
 export default class Question extends React.Component {
-    markOption(option) {
-        this.props.updateAnswer();
+    constructor(props) {
+        super(props);
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(event) {
-        const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
+/*    componentDidMount() {
+        if (this.props.question.type === 'free-response') {
+            focus()
+        }
+    }*/
 
-        console.log(event);
-        this.setState({
-            [name]: value
-        });
+    shouldComponentUpdate() {
+        return false;
+    }
+
+    handleChange(event, option) {
+        event.target.focus();
+        console.log(event.target, event.name, event.type, this.props);
+        event.persist();
+        this.props.updateAnswer(option, event, this.props.question.id);
+        event.target.focus();
     }
 
     renderInputs(option) {
@@ -27,16 +36,19 @@ export default class Question extends React.Component {
     renderQuestion() {
         return this.props.question.type != 'free-response' ? this.props.question.options.map((option) => {
             return (
-                <a key={option.id} className={"toggle " + (option.marked ? "active" : null)} onClick={this.handleChange}> 
-                    {this.renderInputs(option)}
-                </a>
+                <div key={option.id} className={"option-container toggle " + (option.value ? "active" : null)}>
+                    <a onClick={(event) => this.handleChange(event, option)}> 
+                        {this.renderInputs(option)}
+                    </a>
+                </div>
             );
-        }) : <textinput onChange={this.handleChange} />;
+        }) : <textarea value={this.props.question.value || ""} onChange={this.handleChange} />;
     }
 
     render() {
         return (
             <div>
+                {console.log(this.props)}
                 <h2>{this.props.question.text}</h2>
                 <div>
                     {this.renderQuestion()}

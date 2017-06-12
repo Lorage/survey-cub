@@ -11,3 +11,25 @@ Normally would be SCSS/SASS/LESS, but I don't have time to get the build cycle r
 .progress-bar .progress-bar-node {
     flex-grow: 1;
 }
+
+.button-container {
+    margin-top: 10px;
+}
+
+.button-containerr textinput {
+    width: 100%;
+    height: 70px;
+}
+
+.toggle.active {
+    border: 1px solid green;
+}
+
+.submit-button {
+    border: none;
+    background-color: none;
+    height: 40px;
+    width: 60px;
+    background-color: purple;
+    color: white;
+}
