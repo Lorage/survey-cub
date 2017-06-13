@@ -35,7 +35,6 @@ export default class Question extends React.Component {
     render() {
         return (
             <div>
-                {console.log(this.props)}
                 <h2>{this.props.question.text}</h2>
                 <div>
                     {this.renderQuestion()}
