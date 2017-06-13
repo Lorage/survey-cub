@@ -25,7 +25,6 @@ class Root extends React.Component {
                 <div>
                     <Route exact path="/" component={SurveyList} />
                     <Route path="/survey/:id" component={Survey} />
-                    <Route exact path="/results" component={Results} />
                 </div>
             </BrowserRouter>
         );
@@ -33,6 +32,3 @@ class Root extends React.Component {
 }
 
 ReactDOM.render(<Root />, document.getElementById('root'));
-
-// SurveyList -> Click on Survey
-// 

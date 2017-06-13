@@ -7,22 +7,9 @@ export default class Question extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-/*    componentDidMount() {
-        if (this.props.question.type === 'free-response') {
-            focus()
-        }
-    }*/
-
-    shouldComponentUpdate() {
-        return false;
-    }
-
     handleChange(event, option) {
-        event.target.focus();
-        console.log(event.target, event.name, event.type, this.props);
         event.persist();
         this.props.updateAnswer(option, event, this.props.question.id);
-        event.target.focus();
     }
 
     renderInputs(option) {
@@ -57,6 +44,3 @@ export default class Question extends React.Component {
         );
     }
 }
-
-// On submit, run function, update parent container state, and then push to next question,
-// If last question, push to results, pull question history

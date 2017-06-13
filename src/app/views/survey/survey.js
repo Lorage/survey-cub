@@ -1,11 +1,13 @@
 import React from 'react';
 import {
   Route,
-  Link
+  Link,
+  Switch
 } from 'react-router-dom';
 
 import Manager from '../../lib/manager.js';
 import Question from './question.js';
+import Results from '../results/results.js';
 import ProgressBar from '../../components/progress-bar.js';
 
 export default class Survey extends React.Component {
@@ -23,15 +25,8 @@ export default class Survey extends React.Component {
     }
 
     componentDidMount() {
-        // Check for past answers in case users come back from results
-        // If no results, go to first question and leave this.state.answers as an empty array
-        // Else instantiate the answers array with saved answers
-        if (true) {
-            //console.log(`${this.props.location.pathname}/1`, this.props);
-            this.props.history.push(`/survey/1/0`);
-        } else {
-            // Load survey data
-        }
+        // Load first question
+        this.props.history.push(`/survey/1/0`);
 
         this.props.history.listen((location, action) => {
             if (action === "POP" ) {
@@ -45,9 +40,6 @@ export default class Survey extends React.Component {
                 }
                 
                 this.setState(newState);
-                
-/*                this.managePastData();
-                this.props.history.push(`/survey/1/0`);*/
             }
         });
     }
@@ -73,7 +65,6 @@ export default class Survey extends React.Component {
             } else {
                 newSurvey.questions.forEach((question) => {
                     if (questionId === question.id) {
-                        console.log("event", event.target.value);
                         newSurvey.questions[currentQuestion].value = event.target.value;
                     }
                 });
@@ -85,12 +76,12 @@ export default class Survey extends React.Component {
 
     nextAnswer() {
         // Go to next answer or results
-        if ((this.state.currentNode + 1) <= this.state.survey.questions.length) {
+        if ((this.state.currentNode + 1) < this.state.survey.questions.length) {
             this.setState({currentNode: this.state.currentNode + 1});
             this.props.history.push(`/survey/${this.state.survey.id}/${Number(this.state.currentNode) + 1}`);
-        } else if ((this.state.currentNode + 1) > this.state.survey.questions.length) {
+        } else if ((this.state.currentNode + 1) >= this.state.survey.questions.length) {
             window.localStorage.setItem("surveyData", JSON.stringify(this.state.survey));
-            this.props.history.push(`/results`);
+            this.props.history.push(`/survey/${this.state.survey.id}/results`);
         }
     }
 
@@ -99,18 +90,25 @@ export default class Survey extends React.Component {
             <div>
                 <div className="progress-container">
                     <h2>Progress Bar</h2>
-                    {this.state.survey.questions.length && <ProgressBar nodes={this.state.survey.questions} currentNode={this.state.currentNode + 1} />}
+                    <ProgressBar nodes={this.state.survey.questions} currentNode={this.state.currentNode + 1} />
                 </div>
                 <div className="options-container">
-                    <Route path="/survey/:id/:questionId" component={() => {
-                        console.log(this.state.survey, this.state.currentNode);
+                    <Route exact path="/survey/:id/:questionId" component={() => {
                         return (
                             <Question updateAnswer={this.updateAnswer} 
                                 question={this.state.survey.questions[this.state.currentNode]}
                                 questionIndex={this.state.currentNode} />
                         );
                     }}/>
+
+                    <Route exact path="/survey/:id/results" component={() => {
+                        return (
+                            <Results survey={this.state.survey} />
+                        );
+                    }} />
+                
                 </div>
+                
                 <div className="button-container">
                     <button className="submit-button" type="submit" onClick={this.nextAnswer}>Next Question</button>
                 </div>
