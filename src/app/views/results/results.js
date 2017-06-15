@@ -6,7 +6,7 @@ export default class Results extends React.Component {
         if (question.type === "image" || question.type === "text-multiselect") {
             return question.options.map((option) => {
                 if (option.hasOwnProperty('value') && option.value === true) {
-                    return (question.type === "image" ? <img src={option.content}/> : <p>{option.content}</p>);
+                    return (question.type === "image" ? <img key={option.content} src={option.content}/> : <p key={option.content}>{option.content}</p>);
                 } 
             });
         } else {

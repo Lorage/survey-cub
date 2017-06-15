@@ -22,19 +22,16 @@ export default class Survey extends React.Component {
         // Load first question
         this.props.router.push(`/survey/1/0`);
 
-        this.props.router.listen((location, action) => {
-            if (action === "POP" ) {
+        this.props.router.listenBefore((location, action) => {
+            if (location.action === "POP" ) {
                 var questionNumber = location.pathname.slice(10, 11);
                 var newState = {
-                    currentNode: questionNumber
+                    currentNode: Number(questionNumber)
                 };
-                if (window.localStorage.getItem("surveyData") !== null) {
-                    var newSurvey = JSON.parse(window.localStorage.getItem("surveyData"));
-                    newState.survey = newSurvey;
-                }
-                
+
                 this.setState(newState);
             }
+            action();
         });
     }
 
@@ -75,6 +72,7 @@ export default class Survey extends React.Component {
             this.props.router.push(`/survey/${this.state.survey.id}/${Number(this.state.currentNode) + 1}`);
         } else if ((this.state.currentNode + 1) >= this.state.survey.questions.length) {
             window.localStorage.setItem("surveyData", JSON.stringify(this.state.survey));
+            this.props.updateStateContainer({survey: this.state.survey});
             this.props.router.push(`/results`);
         }
     }

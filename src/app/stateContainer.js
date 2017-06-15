@@ -12,7 +12,7 @@ export default class Root extends React.Component
         this.updateStateContainer = this.updateStateContainer.bind(this);
     }
 
-    updateStateContainer() {
+    updateStateContainer(newState) {
         this.setState(newState);
     }
 
@@ -20,12 +20,8 @@ export default class Root extends React.Component
 		return React.Children.map(props.children, child =>
 		{
 			return React.cloneElement(child, {
-				toggleSidebar: this.toggleSidebar,
-				showBackButton: this.showBackButton,
-				hideBackButton: this.hideBackButton,
-				changeTransitionClass: this.changeTransitionClass,
-				key: child.type.name,
-				startOrderProcess: this.startOrderProcess
+                updateStateContainer: this.updateStateContainer,
+				survey: this.state.survey
 			});
 		});
 	}
