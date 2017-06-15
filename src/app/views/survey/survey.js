@@ -1,21 +1,15 @@
 import React from 'react';
-import {
-  Route,
-  Link,
-  Switch
-} from 'react-router-dom';
 
 import Manager from '../../lib/manager.js';
-import Question from './question.js';
-import Results from '../results/results.js';
 import ProgressBar from '../../components/progress-bar.js';
 
 export default class Survey extends React.Component {
     constructor(props) {
         super(props);
 
+        console.log(this.props);
         this.state = {
-            survey: Manager.getSurveyById(this.props.match.params.id),
+            survey: Manager.getSurveyById(this.props.params.id),
             currentNode: 0,
             answers: []
         };
@@ -26,9 +20,9 @@ export default class Survey extends React.Component {
 
     componentDidMount() {
         // Load first question
-        this.props.history.push(`/survey/1/0`);
+        this.props.router.push(`/survey/1/0`);
 
-        this.props.history.listen((location, action) => {
+        this.props.router.listen((location, action) => {
             if (action === "POP" ) {
                 var questionNumber = location.pathname.slice(10, 11);
                 var newState = {
@@ -78,12 +72,27 @@ export default class Survey extends React.Component {
         // Go to next answer or results
         if ((this.state.currentNode + 1) < this.state.survey.questions.length) {
             this.setState({currentNode: this.state.currentNode + 1});
-            this.props.history.push(`/survey/${this.state.survey.id}/${Number(this.state.currentNode) + 1}`);
+            this.props.router.push(`/survey/${this.state.survey.id}/${Number(this.state.currentNode) + 1}`);
         } else if ((this.state.currentNode + 1) >= this.state.survey.questions.length) {
             window.localStorage.setItem("surveyData", JSON.stringify(this.state.survey));
-            this.props.history.push(`/survey/${this.state.survey.id}/results`);
+            this.props.router.push(`/results`);
         }
     }
+
+    renderRoutes(props)
+	{
+		return React.Children.map(props.children, child =>
+		{
+			return React.cloneElement(child, {
+                // Question props
+				updateAnswer: this.updateAnswer,
+                question: this.state.survey.questions[this.state.currentNode],
+                questionIndex: this.state.currentNode,
+                // Results props
+                survey: this.state.currentNode
+			});
+		});
+	}
 
     render() {
         return (
@@ -93,20 +102,7 @@ export default class Survey extends React.Component {
                     <ProgressBar nodes={this.state.survey.questions} currentNode={this.state.currentNode + 1} />
                 </div>
                 <div className="options-container">
-                    <Route exact path="/survey/:id/:questionId" component={() => {
-                        return (
-                            <Question updateAnswer={this.updateAnswer} 
-                                question={this.state.survey.questions[this.state.currentNode]}
-                                questionIndex={this.state.currentNode} />
-                        );
-                    }}/>
-
-                    <Route exact path="/survey/:id/results" component={() => {
-                        return (
-                            <Results survey={this.state.survey} />
-                        );
-                    }} />
-                
+                    {this.renderRoutes(this.props)}
                 </div>
                 
                 <div className="button-container">

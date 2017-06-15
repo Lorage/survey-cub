@@ -2,6 +2,8 @@ var path = require('path');
 var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+console.log(process.env);
+
 module.exports = {
     entry: './src/app/index.js',
     output: {
@@ -21,5 +23,10 @@ module.exports = {
     plugins: [
         new webpack.optimize.UglifyJsPlugin(),
         new ExtractTextPlugin('styles.css'),
+        new webpack.DefinePlugin({
+			'process.env': {
+				NODE_ENV: JSON.stringify(process.env.NODE_ENV)
+			}
+		})
     ]
 }
