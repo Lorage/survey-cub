@@ -26,6 +26,7 @@ class Root extends React.Component
 					<IndexRedirect to="/surveys" />
 					<Route path="/surveys" component={SurveyList} />
                     <Route path="/survey/:id" component={Survey}>
+                        <IndexRedirect to="/survey/:id/0" />
                         <Route exact path="/survey/:id/:questionId" component={Question} />
                     </Route>
                     <Route exact path="/results" component={Results} />

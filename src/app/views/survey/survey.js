@@ -2,6 +2,7 @@ import React from 'react';
 
 import Manager from '../../lib/manager.js';
 import ProgressBar from '../../components/progress-bar.js';
+import Header from '../../components/header.js';
 
 export default class Survey extends React.Component {
     constructor(props) {
@@ -20,7 +21,7 @@ export default class Survey extends React.Component {
 
     componentDidMount() {
         // Load first question
-        this.props.router.push(`/survey/1/0`);
+        //this.props.router.push(`/survey/1/0`);
 
         this.props.router.listenBefore((location, action) => {
             if (location.action === "POP" ) {
@@ -94,7 +95,8 @@ export default class Survey extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="page">
+                <Header />
                 <div className="progress-container">
                     <h2>Progress Bar</h2>
                     <ProgressBar nodes={this.state.survey.questions} currentNode={this.state.currentNode + 1} />

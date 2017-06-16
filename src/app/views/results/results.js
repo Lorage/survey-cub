@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Header from '../../components/header.js';
+
 export default class Results extends React.Component {
 
     getAnswers(question) {
@@ -16,7 +18,11 @@ export default class Results extends React.Component {
 
     render() {
         return (
-            <div className="results-container">
+            <div className="results-container page">
+                <Header />
+                <div>
+                    <h2>We asked you...</h2>
+                </div>
                 {this.props.survey.questions.map((question, nodeIndex) => {
                     return (
                         <div key={nodeIndex}>

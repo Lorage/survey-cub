@@ -2,6 +2,70 @@
 Normally would be SCSS/SASS/LESS, but I don't have time to get the build cycle right
 */
 
+* {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    margin-top: 68px;
+}
+
+/* Header */
+.header-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    border-bottom: 1px solid #333333;
+    background-color: rgb(28, 61, 114);
+    color: white;
+}
+
+.header-container .title-section, .header-container .user-section {
+    display: inline-block;
+    box-sizing: border-box;
+    width: 50%;
+    padding: 10px;
+}
+
+.header-container .title-section a {
+    display: inline-block;
+    width: 42px;
+    height: 42px;
+    border: 1px solid white;
+}
+
+.header-container .user-section > div {
+    float: right;
+    width: 42px;
+    height: 42px;
+    border: 1px solid white;
+}
+
+.header-container .user-section {
+    float: right;
+}
+
+.header-container .title-section {
+    float: left;
+}
+
+.header-container .title-section > div {
+    display: inline-block;
+    margin-left: 18px;
+    font-size: xx-large;
+    vertical-align: top;
+    margin-top: 4px;
+}
+
+.page {
+    padding: 20px 20px 0px 20px;
+}
+
+
+/*  Progress bar */
 .progress-bar {
     width: 100%;
     display: flex;
@@ -17,6 +81,7 @@ Normally would be SCSS/SASS/LESS, but I don't have time to get the build cycle r
     background-color: green;
 }
 
+/* Buttons */
 .button-container {
     margin-top: 10px;
 }

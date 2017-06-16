@@ -16,16 +16,18 @@ export default class SurveyList extends React.Component {
 
     render() {
         return (
-            <div className="surveys-list-container">
+            <div className="surveys-view page">
                 <div className="header-bar"></div>
-                {this.state.surveys.map((survey)=> {
-                    var surveyPath = `/survey/${survey.id}`;
-                    return (
-                        <Link to={surveyPath} key={survey.name}> 
-                            <div className="survey-item">{survey.name}</div>
-                        </Link>
-                    );
-                })}
+                <div className="survey-list-container">
+                    {this.state.surveys.map((survey)=> {
+                        var surveyPath = `/survey/${survey.id}`;
+                        return (
+                            <Link to={surveyPath} key={survey.name}> 
+                                <div className="survey-item">{survey.name}</div>
+                            </Link>
+                        );
+                    })}
+                </div>
             </div>
         );
     }

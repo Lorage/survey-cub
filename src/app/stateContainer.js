@@ -1,6 +1,8 @@
 // Core Imports
 import React from 'react';
 
+import Header from './components/header.js';
+
 export default class Root extends React.Component 
 {
     constructor(props) {
@@ -30,6 +32,7 @@ export default class Root extends React.Component
 	{
 		return (
             <div>
+                <Header />
                 {this.renderChildren(this.props)}
             </div>
 		);
