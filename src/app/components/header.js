@@ -11,7 +11,7 @@ export default class Header extends React.Component {
                 <div className="title-section">
                     <Link to="/surveys">
                         <div>
-                            <img height="43" width="43" src="https://avatars3.githubusercontent.com/u/7266806?v=3&s=460" />
+                            <img height="42" width="42" src="https://pbs.twimg.com/profile_images/494561251737874432/xNY6Xwpe_400x400.png" />
                         </div>
                     </Link>
                     <div>
