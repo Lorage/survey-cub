@@ -23,7 +23,8 @@ export default class Question extends React.Component {
     renderQuestion() {
         return this.props.question.type != 'free-response' ? this.props.question.options.map((option) => {
             return (
-                <div key={option.id} className={"option-container toggle " + (option.value ? "active" : null)}>
+                <div key={option.id} className={"option-container toggle " + 
+                (option.value ? "active" : null) + (option.type === "text" ? " text" : " img")}>
                     <a onClick={(event) => this.handleChange(event, option)}> 
                         {this.renderInputs(option)}
                     </a>

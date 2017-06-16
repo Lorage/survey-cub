@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link
+} from 'react-router';
 
 import Header from '../../components/header.js';
 
@@ -16,21 +19,32 @@ export default class Results extends React.Component {
         }
     }
 
+    finish() {
+        this.props.router.push(`/surveys`);
+    }
+
     render() {
         return (
             <div className="results-container page">
                 <Header />
-                <div>
-                    <h2>We asked you...</h2>
+                <div className="results-body">
+                    <div className="underline">
+                        <h2>We asked you...</h2>
+                    </div>
+                    <div className="results">
+                        {this.props.survey.questions.map((question, nodeIndex) => {
+                            return (
+                                <div key={nodeIndex}>
+                                    <h3>{question.text} </h3>
+                                    {this.getAnswers(question)}
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
-                {this.props.survey.questions.map((question, nodeIndex) => {
-                    return (
-                        <div key={nodeIndex}>
-                            <h3>{question.text} </h3>
-                            {this.getAnswers(question)}
-                        </div>
-                    );
-                })}
+                <div className="button-container">
+                    <button className="submit-button" type="submit" onClick={this.finish}>Finish</button>
+                </div>
             </div>
         );
     }

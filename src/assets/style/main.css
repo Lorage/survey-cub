@@ -75,12 +75,12 @@ body {
 }
 
 .progress-bar div {
-    border: 1px solid black;
+    border: 1px solid rgb(179, 179, 179);
     flex-grow: 1;
 }
 
 .progress-bar .filled {
-    background-color: green;
+    background-color: rgb(33, 68, 124);
 }
 
 /* Buttons */
@@ -91,18 +91,20 @@ body {
 .button-containerr textinput {
     width: 100%;
     height: 70px;
+    padding: 4px;
 }
 
 .toggle.active {
-    border: 1px solid green;
+    border: 1px solid rgb(33, 68, 124);
 }
 
 .submit-button {
     border: none;
     background-color: none;
-    height: 40px;
-    width: 60px;
-    background-color: purple;
+    height: 50px;
+    width: 65px;
+    font-weight: bold;
+    background-color: rgb(33, 68, 124);
     color: white;
 }
 
@@ -139,3 +141,91 @@ body {
     color: white;
     font-weight: bold;
 }
+
+/* Survey view */
+
+
+.survey-view {
+    margin: 6% 16% 0 16%;
+}
+
+.survey-view .option-container {
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.survey-view .option-container:hover {
+    border: 1px solid rgba(51,51,51,0.37);
+    cursor: pointer;
+}
+
+.survey-view .img {
+    display: inline-block;
+    padding: 15px;
+}
+
+.survey-view .text {
+    display: block;
+    width: 100%;
+    padding: 10px;
+}
+
+.survey-view .img img {
+    max-width: 250px;
+}
+
+.survey-view textarea {
+    width: 100%;
+    height: 200px;
+    font-size: 16px;
+}
+
+.options-container {
+    padding-top: 5%;
+}
+
+
+/* buttons */
+.button-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    float: right;
+}
+
+.button-container button {
+    float: right;
+    width: 120px;
+}
+
+.button-container button:hover {
+    background-color: white;
+    color: rgb(33, 68, 124);
+    font-weight: bold;
+    border: 1px solid rgba(51,51,51,0.77);
+    cursor: pointer;
+    outline: none;
+}
+
+/* Results */
+.results-body {
+    padding: 5% 16% 0 16%;
+}
+
+.results-body .underline {
+    border-bottom: 2px solid rgb(33, 68, 124);
+}
+
+.results-body .results {
+    padding-left: 15px;
+}
+
+.results-body .results img {
+    max-width: 220px;
+    padding: 10px;
+    border: 1px solid rgba(51,51,51,0.77);
+    margin: 5px;
+}
+
+

@@ -10,9 +10,13 @@ export default class Header extends React.Component {
             <div className="header-container">
                 <div className="title-section">
                     <Link to="/surveys">
-                        <div></div>
+                        <div>
+                            <img height="43" width="43" src="https://avatars3.githubusercontent.com/u/7266806?v=3&s=460" />
+                        </div>
                     </Link>
-                    <div>Survey Cub</div>
+                    <div>
+                        Survey Cub
+                    </div>
                 </div>
                 <div className="user-section">
                     <div></div>

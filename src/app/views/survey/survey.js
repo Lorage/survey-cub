@@ -8,7 +8,6 @@ export default class Survey extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log(this.props);
         this.state = {
             survey: Manager.getSurveyById(this.props.params.id),
             currentNode: 0,
@@ -20,8 +19,6 @@ export default class Survey extends React.Component {
     }
 
     componentDidMount() {
-        // Load first question
-
         this.props.router.listenBefore((location, action) => {
             if (location.action === "POP" ) {
                 var questionNumber = location.pathname.slice(10, 11);
@@ -96,16 +93,17 @@ export default class Survey extends React.Component {
         return (
             <div className="page">
                 <Header />
-                <div className="progress-container">
-                    <h2>Progress Bar</h2>
-                    <ProgressBar nodes={this.state.survey.questions} currentNode={this.state.currentNode + 1} />
-                </div>
-                <div className="options-container">
-                    {this.renderRoutes(this.props)}
-                </div>
-                
-                <div className="button-container">
-                    <button className="submit-button" type="submit" onClick={this.nextAnswer}>Next Question</button>
+                <div className="survey-view">
+                    <div className="progress-container">
+                        <ProgressBar nodes={this.state.survey.questions} currentNode={this.state.currentNode + 1} />
+                    </div>
+                    <div className="options-container">
+                        {this.renderRoutes(this.props)}
+                    </div>
+                    
+                    <div className="button-container">
+                        <button className="submit-button" type="submit" onClick={this.nextAnswer}>Next</button>
+                    </div>
                 </div>
             </div>
         );
