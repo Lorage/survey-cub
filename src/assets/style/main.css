@@ -14,13 +14,15 @@ body {
 
 /* Header */
 .header-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
+    max-width: 100%;
     border-bottom: 1px solid #333333;
-    background-color: rgb(28, 61, 114);
+    background: url(https://www.toptal.com/designers/subtlepatterns/patterns/congruent_outline.png);
     color: white;
+    box-shadow: 2px 2px 8px 0px rgba(0,0,0,0.75);
 }
 
 .header-container .title-section, .header-container .user-section {
@@ -102,4 +104,38 @@ body {
     width: 60px;
     background-color: purple;
     color: white;
+}
+
+/* Survey list */
+.surveys-view {
+    margin: 10% 20% 0 20%;
+}
+
+.surveys-view .survey-list-container {
+    padding-left: 20px;
+}
+
+.surveys-view .survey-list-container > a {
+    border: 1px solid rgba(51,51,51,0.37);
+    width: 100%;
+    max-width: 625px;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    font-size: larger;
+    color: #333333;
+    font-weight: bold;
+}
+
+.surveys-view .survey-list-container > a:hover {
+    border: 1px solid #333333;
+    width: 100%;
+    max-width: 625px;
+    padding: 15px;
+    display: block;
+    text-decoration: none;
+    background-color: #333333;
+    font-size: larger;
+    color: white;
+    font-weight: bold;
 }

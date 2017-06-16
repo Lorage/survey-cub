@@ -21,7 +21,6 @@ export default class Survey extends React.Component {
 
     componentDidMount() {
         // Load first question
-        //this.props.router.push(`/survey/1/0`);
 
         this.props.router.listenBefore((location, action) => {
             if (location.action === "POP" ) {

@@ -17,7 +17,7 @@ export default class SurveyList extends React.Component {
     render() {
         return (
             <div className="surveys-view page">
-                <div className="header-bar"></div>
+                <h2>Your Surveys</h2>
                 <div className="survey-list-container">
                     {this.state.surveys.map((survey)=> {
                         var surveyPath = `/survey/${survey.id}`;
