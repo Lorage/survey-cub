@@ -6,6 +6,11 @@ import {
 import Header from '../../components/header.js';
 
 export default class Results extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.finish = this.finish.bind(this);
+    }
 
     getAnswers(question) {
         if (question.type === "image" || question.type === "text-multiselect") {
